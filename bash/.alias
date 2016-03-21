@@ -30,6 +30,9 @@ cupadminbar() {
 cupcookies() {
 	cup $1 cookies https://github.com/nystudio107/cookies.git;
 }
+cupfocalpointfield() {
+	cup $1 focalpointfield https://github.com/aelvan/FocalPointField-Craft.git;
+}
 cupimager() {
 	cup $1 imager https://github.com/aelvan/Imager-Craft.git;
 }
