@@ -17,5 +17,5 @@ Make it easy to switch from directory to directory
 1. Open `.zsh` and look at the comments in that file
 
 ### Sources
-* [https://github.com/jamestomasino/dotfiles/tree/master/bash](James' Github)
-* [https://github.com/aidens](Aiden's Github)
+* [James' Github](https://github.com/jamestomasino/dotfiles/tree/master/bash)
+* [Aiden's Github](https://github.com/aidens)
