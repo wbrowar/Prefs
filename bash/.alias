@@ -9,10 +9,12 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 
+
 # APPS
 alias safari="open -a Safari http://dixonschwabl.com/"
 alias chrome="open -a Google\ Chrome http://dixonschwabl.com/"
 alias openall="open -a MAMP\ PRO && open -a Sublime\ Text && open -a Sequel\ Pro && open -a SourceTree && open -a Transmit && chrome"
+
 
 # CRAFT UPDATE PLUGIN
 # example:
@@ -46,6 +48,7 @@ cupseomatic() {
 	cup $1 seomatic https://github.com/khalwat/seomatic.git;
 }
 
+
 # GIT
 # GIT DOWN – Pull and check status of repo
 gitd() {
@@ -77,6 +80,7 @@ gitr() {
 alias gita="git add -A"
 alias gits="git status"
 
+
 # GRUNT
 alias grn="grunt"
 alias grnw="grunt watch"
@@ -84,6 +88,7 @@ alias grnr="grunt release"
 alias grnf="grunt --force"
 alias grnch="grunt && grunt htmlprocess"
 alias grnfirst="npm install && bower install && grunt first"
+
 
 # MAC SPECIFIC
 alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
@@ -94,9 +99,12 @@ alias hidedeskicons="defaults write com.apple.finder CreateDesktop -bool false &
 alias lock='/System/Library/CoreServices/"Menu Extras"/User.menu/Contents/Resources/CGSession -suspend'
 alias ss='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine'
 
+
 # NPM
 alias npmi="npm install"
+
 
 # SUBLIME
 # (@TODO need to figure this out)
 # alias sp='sublime --command "close_project"; sleep 0.2; sublime --project'
+
