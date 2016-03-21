@@ -1,0 +1,102 @@
+# BASIC SHELL ALIASES
+alias lsd='ls -Gl | grep "^d"'
+alias lsort='echo "========== Newest ==========" && ls -At1 && echo "========== Oldest =========="'
+alias reload="source ~/.bash_profile && clear"
+alias cd..="cd .."
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
+
+# APPS
+alias safari="open -a Safari http://dixonschwabl.com/"
+alias chrome="open -a Google\ Chrome http://dixonschwabl.com/"
+alias openall="open -a MAMP\ PRO && open -a Sublime\ Text && open -a Sequel\ Pro && open -a SourceTree && open -a Transmit && chrome"
+
+# CRAFT UPDATE PLUGIN
+# example:
+# cupseomatic rba_craft
+cup() {
+	if [ -d "$1/plugins/$2" ]; then
+		cd "$1"/plugins/$2 && git pull && cd ../../../;
+	else
+		cd "$1"/plugins/ && git clone $3 $2 && cd ../../;
+	fi
+}
+cupadminbar() {
+	cup $1 adminbar https://github.com/wbrowar/adminbar.git;
+}
+cupcookies() {
+	cup $1 cookies https://github.com/nystudio107/cookies.git;
+}
+cupimager() {
+	cup $1 imager https://github.com/aelvan/Imager-Craft.git;
+}
+cupimageresize() {
+	cup $1 imageresize https://github.com/engram-design/ImageResizer.git;
+}
+cupminify() {
+	cup $1 minify https://github.com/nystudio107/minify.git;
+}
+cupseomatic() {
+	cup $1 seomatic https://github.com/khalwat/seomatic.git;
+}
+
+# GRUNT
+alias grn="grunt"
+alias grnw="grunt watch"
+alias grnr="grunt release"
+alias grnf="grunt --force"
+alias grnch="grunt && grunt htmlprocess"
+alias grnfirst="npm install && bower install && grunt first"
+
+# MAC SPECIFIC
+alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
+alias showdotfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+alias hidedotfiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+alias showdeskicons="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+alias hidedeskicons="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+alias lock='/System/Library/CoreServices/"Menu Extras"/User.menu/Contents/Resources/CGSession -suspend'
+alias ss='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine'
+
+# GIT
+# GIT DOWN – Pull and check status of repo
+gitd() {
+	git pull && git status;
+}
+
+# GIT UP – Commit with a message and push to current branch
+# syntax:
+# gitu "[commit message]"
+gitu() {
+	git add -A && git commit -m "$1" && git push && git status;
+}
+
+# GIT RELEASE – Pull, tag (with version and message), then commit and push to current branch
+# syntax:
+# gitr "[commit message]" [version number] "[version message (optional)]"
+# example:
+# gitr "Version 1.1" 1.1.0 "Launching new feature"
+gitr() {
+	gitd;
+	if [ ! -z "$3" ]; then
+		git tag -a v$2 -m "$3";
+	else
+		git tag -a v$2 -m "$1";
+	fi
+	gitu "$1";
+}
+
+alias gita="git add -A"
+alias gits="git status"
+
+# NPM
+alias npmi="npm install"
+
+# SUBLIME
+alias sp='sublime --command "close_project"; sleep 0.2; sublime --project'
+
+
+
+
