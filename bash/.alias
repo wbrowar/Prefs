@@ -99,6 +99,10 @@ alias hidedeskicons="defaults write com.apple.finder CreateDesktop -bool false &
 alias lock='/System/Library/CoreServices/"Menu Extras"/User.menu/Contents/Resources/CGSession -suspend'
 alias ss='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine'
 
+notify() {
+	osascript -e "display notification \"$2\" with title \"$1\"";
+}
+
 
 # NPM
 alias npmi="npm install"
@@ -108,3 +112,20 @@ alias npmi="npm install"
 # (@TODO need to figure this out)
 # alias sp='sublime --command "close_project"; sleep 0.2; sublime --project'
 
+
+# WEBSITE SHORTCUTS
+# SITE RELEASE – change version number, run grunt release, then commit all changes and tag release
+# syntax:
+# siter "[commit message]" [version number] "[version message (optional)]"
+# example:
+# siter "Version 1.1" 1.1.0 "Launching new feature"
+siter() {
+	sed -i '' "s/\(  \"version\": \"\)[^\"]*\(\"\)/\1$2\2/g" package.json;
+	grunt release;
+	if [ ! -z "$3" ]; then
+		gitr "$1" $2 "$3";
+	else
+		gitr "$1" $2 "$1";
+	fi
+	notify "SITE RELEASE" "Version $2 released!"
+}
