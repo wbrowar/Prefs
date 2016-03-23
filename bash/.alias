@@ -69,12 +69,12 @@ gitu() {
 # gitr "Version 1.1" 1.1.0 "Launching new feature"
 gitr() {
 	gitd;
+	gitu "$1";
 	if [ ! -z "$3" ]; then
 		git tag -a v$2 -m "$3";
 	else
 		git tag -a v$2 -m "$1";
 	fi
-	gitu "$1";
 }
 
 alias gita="git add -A"
