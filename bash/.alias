@@ -75,6 +75,7 @@ gitr() {
 	else
 		git tag -a v$2 -m "$1";
 	fi
+	git push --follow-tags;
 }
 
 alias gita="git add -A"
