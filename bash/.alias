@@ -17,8 +17,10 @@ alias openall="open -a MAMP\ PRO && open -a Sublime\ Text && open -a Sequel\ Pro
 
 
 # CRAFT UPDATE PLUGIN
+# syntax:
+# cupseomatic [craft folder]
 # example:
-# cupseomatic rba_craft
+# cupseomatic rba_craft/
 cup() {
 	if [ -d "$1/plugins/$2" ]; then
 		cd "$1"/plugins/$2;
@@ -30,6 +32,9 @@ cup() {
 		cd ../../;
 	fi
 }
+# when a plugin is not in the repo root, clone it and move plugin files to the right directory
+# syntax:
+# cupmovedelete [craft folder] [name of plugin folder] [repo to clone] [name of folder inside of repo root]
 cupmovedelete() {
 	cd "$1"/plugins/;
 	rm -rf $2;
@@ -120,6 +125,7 @@ notify() {
 
 # NPM
 alias npmi="npm install"
+alias npmu="npm update"
 
 
 # SUBLIME
