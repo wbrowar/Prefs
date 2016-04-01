@@ -21,10 +21,23 @@ alias openall="open -a MAMP\ PRO && open -a Sublime\ Text && open -a Sequel\ Pro
 # cupseomatic rba_craft
 cup() {
 	if [ -d "$1/plugins/$2" ]; then
-		cd "$1"/plugins/$2 && git pull && cd ../../../;
+		cd "$1"/plugins/$2;
+		git pull;
+		cd ../../../;
 	else
-		cd "$1"/plugins/ && git clone $3 $2 && cd ../../;
+		cd "$1"/plugins/;
+		git clone $3 $2;
+		cd ../../;
 	fi
+}
+cupmovedelete() {
+	cd "$1"/plugins/;
+	rm -rf $2;
+	git clone $3 "$2-delete";
+	mkdir -p $2;
+	mv "$2-delete"/$4/* $2;
+	rm -rf "$2-delete";
+	cd ../../;
 }
 cupadminbar() {
 	cup $1 adminbar https://github.com/wbrowar/adminbar.git;
@@ -33,13 +46,13 @@ cupcookies() {
 	cup $1 cookies https://github.com/nystudio107/cookies.git;
 }
 cupfocalpointfield() {
-	cup $1 focalpointfield https://github.com/aelvan/FocalPointField-Craft.git;
+	cupmovedelete $1 focalpointfield https://github.com/aelvan/FocalPointField-Craft.git focalpointfield;
 }
 cupimager() {
-	cup $1 imager https://github.com/aelvan/Imager-Craft.git;
+	cupmovedelete $1 imager https://github.com/aelvan/Imager-Craft.git imager;
 }
 cupimageresize() {
-	cup $1 imageresize https://github.com/engram-design/ImageResizer.git;
+	cupmovedelete $1 imageresize https://github.com/engram-design/ImageResizer.git imageresizer;
 }
 cupminify() {
 	cup $1 minify https://github.com/nystudio107/minify.git;
