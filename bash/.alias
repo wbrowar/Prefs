@@ -47,6 +47,9 @@ cupmovedelete() {
 cupadminbar() {
 	cup $1 adminbar https://github.com/wbrowar/adminbar.git;
 }
+cupcontentstats() {
+	cup $1 contentstats https://github.com/wbrowar/contentstats.git;
+}
 cupcookies() {
 	cup $1 cookies https://github.com/nystudio107/cookies.git;
 }
