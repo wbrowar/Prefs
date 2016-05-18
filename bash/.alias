@@ -100,7 +100,7 @@ gitr() {
 }
 
 alias gita="git add -A"
-alias gits="git status"
+alias gits="git status && git tag"
 
 
 # GRUNT
