@@ -18,7 +18,7 @@ alias chrome="open -a Google\ Chrome http://dixonschwabl.com/"
 
 # COMPOSER
 alias compu="composer update --ignore-platform-reqs"
-alias compcraft() {
+compcraft() {
   composer create-project craftcms/craft "$1" -s beta
 }
 
@@ -113,7 +113,7 @@ gitr() {
 }
 
 alias gita="git add -A"
-alias gits="git status && git tag"
+alias gits="git status && git tag & git branch"
 
 
 # GRUNT
