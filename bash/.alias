@@ -14,8 +14,13 @@ alias ......="cd ../../../../.."
 # APPS
 alias safari="open -a Safari http://dixonschwabl.com/"
 alias chrome="open -a Google\ Chrome http://dixonschwabl.com/"
-alias openall="open -a MAMP\ PRO && open -a Sublime\ Text && open -a Sequel\ Pro && open -a SourceTree && open -a Transmit && chrome"
 
+
+# COMPOSER
+alias compu="composer update --ignore-platform-reqs"
+alias compcraft() {
+  composer create-project craftcms/craft "$1" -s beta
+}
 
 # CRAFT UPDATE PLUGIN
 # syntax:
@@ -74,14 +79,22 @@ cupseomatic() {
 # GIT
 # GIT DOWN – Pull and check status of repo
 gitd() {
-	git pull && git status;
+	git pull && git status && git branch;
 }
 
 # GIT UP – Commit with a message and push to current branch
 # syntax:
 # gitu "[commit message]"
 gitu() {
+	gitd;
 	git add -A && git commit -m "$1" && git push && git status;
+}
+
+# GIT CHECKOUT – Checkout git branch
+# syntax:
+# gitch [branch]
+gitch() {
+	git checkout $1;
 }
 
 # GIT RELEASE – Pull, tag (with version and message), then commit and push to current branch
@@ -90,7 +103,6 @@ gitu() {
 # example:
 # gitr "Version 1.1" 1.1.0 "Launching new feature"
 gitr() {
-	gitd;
 	gitu "$1";
 	if [ ! -z "$3" ]; then
 		git tag -a v$2 -m "$3";
@@ -115,10 +127,10 @@ alias grnfirst="npm install && bower install && grunt first"
 
 # GULP
 alias gl="gulp run"
-alias glw="grunt watch"
-alias glr="grunt release"
-alias glh="grunt && grunt htmlprocess"
-alias glfirst="yarn && bower install && grunt first"
+alias glf="yarn && gulp first"
+alias glr="gulp release"
+alias glv="gulp vars"
+alias glw="gulp watch"
 
 
 # MAC SPECIFIC
@@ -140,11 +152,6 @@ alias npmi="npm install"
 alias npmu="npm update"
 
 
-# SUBLIME
-# (@TODO need to figure this out)
-# alias sp='sublime --command "close_project"; sleep 0.2; sublime --project'
-
-
 # WEBSITE SHORTCUTS
 # SITE RELEASE – change version number, run grunt release, then commit all changes and tag release
 # syntax:
@@ -153,7 +160,7 @@ alias npmu="npm update"
 # siter "Version 1.1" 1.1.0 "Launching new feature"
 siter() {
 	sed -i '' "s/\(  \"version\": \"\)[^\"]*\(\"\)/\1$2\2/g" package.json;
-	grunt release;
+	gulp release;
 	if [ ! -z "$3" ]; then
 		gitr "$1" $2 "$3";
 	else
