@@ -79,7 +79,7 @@ cupseomatic() {
 # GIT
 # GIT DOWN – Pull and check status of repo
 gitd() {
-	git pull && git status && git branch;
+	git pull && gits;
 }
 
 # GIT UP – Commit with a message and push to current branch
