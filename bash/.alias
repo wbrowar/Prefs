@@ -77,6 +77,10 @@ cupseomatic() {
 
 
 # GIT
+alias gita="git add -A"
+alias gits="git status && git tag & git branch"
+alias gitir="git rm --cached -r . && git add ."
+
 # GIT DOWN – Pull and check status of repo
 gitd() {
 	git pull && gits;
@@ -111,9 +115,6 @@ gitr() {
 	fi
 	git push --follow-tags;
 }
-
-alias gita="git add -A"
-alias gits="git status && git tag & git branch"
 
 
 # GRUNT
