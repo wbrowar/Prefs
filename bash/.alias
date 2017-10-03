@@ -22,63 +22,15 @@ compcraft() {
   composer create-project craftcms/craft "$1" -s beta
 }
 
-# CRAFT UPDATE PLUGIN
-# syntax:
-# cupseomatic [craft folder]
-# example:
-# cupseomatic rba_craft/
-cup() {
-	if [ -d "$1/plugins/$2" ]; then
-		cd "$1"/plugins/$2;
-		git pull;
-		cd ../../../;
-	else
-		cd "$1"/plugins/;
-		git clone $3 $2;
-		cd ../../;
-	fi
-}
-# when a plugin is not in the repo root, clone it and move plugin files to the right directory
-# syntax:
-# cupmovedelete [craft folder] [name of plugin folder] [repo to clone] [name of folder inside of repo root]
-cupmovedelete() {
-	cd "$1"/plugins/;
-	rm -rf $2;
-	git clone $3 "$2-delete";
-	mkdir -p $2;
-	mv "$2-delete"/$4/* $2;
-	rm -rf "$2-delete";
-	cd ../../;
-}
-cupadminbar() {
-	cup $1 adminbar https://github.com/wbrowar/adminbar.git;
-}
-cupcontentstats() {
-	cup $1 contentstats https://github.com/wbrowar/contentstats.git;
-}
-cupcookies() {
-	cup $1 cookies https://github.com/nystudio107/cookies.git;
-}
-cupfocalpointfield() {
-	cupmovedelete $1 focalpointfield https://github.com/aelvan/FocalPointField-Craft.git focalpointfield;
-}
-cupimager() {
-	cupmovedelete $1 imager https://github.com/aelvan/Imager-Craft.git imager;
-}
-cupimageresize() {
-	cupmovedelete $1 imageresize https://github.com/engram-design/ImageResizer.git imageresizer;
-}
-cupminify() {
-	cup $1 minify https://github.com/nystudio107/minify.git;
-}
-cupseomatic() {
-	cup $1 seomatic https://github.com/khalwat/seomatic.git;
-}
-
+# CRAFT SCRIPTS
+# requires a .env.sh file in a scripts directory and the file needs to be configured to work with Craft Scripts
+# run this from your project root
+alias cssd="./scripts/backup_assets.sh && ./scripts/backup_db.sh && ./scripts/pull_assets.sh && ./scripts/pull_db.sh && ./scripts/clear_caches.sh"
 
 # GIT
 alias gita="git add -A"
 alias gits="git status && git tag & git branch"
+alias gitrm="git rm --cached -r . -f"
 alias gitir="git rm --cached -r . && git add ."
 
 # GIT DOWN – Pull and check status of repo
