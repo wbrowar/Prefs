@@ -18,6 +18,7 @@ alias chrome="open -a Google\ Chrome http://dixonschwabl.com/"
 
 # COMPOSER
 alias compu="composer update --ignore-platform-reqs"
+alias compw="rm -r vendor && rm composer.lock && composer clear-cache && composer install --ignore-platform-reqs"
 compcraft() {
   composer create-project craftcms/craft "$1" -s beta
 }
@@ -61,9 +62,9 @@ gitch() {
 gitr() {
 	gitu "$1";
 	if [ ! -z "$3" ]; then
-		git tag -a v$2 -m "$3";
+		git tag -a $2 -m "$3";
 	else
-		git tag -a v$2 -m "$1";
+		git tag -a $2 -m "$1";
 	fi
 	git push --follow-tags;
 }
