@@ -99,3 +99,6 @@ fi
 if [ -f "$HOME/.alias" ] ; then
     . "$HOME/.alias"
 fi
+
+# composer
+export PATH="$PATH:$HOME/.composer/vendor/bin"

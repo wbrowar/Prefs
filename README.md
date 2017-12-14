@@ -22,6 +22,9 @@ fi
 if [ -f "$HOME/.alias" ] ; then
     . "$HOME/.alias"
 fi
+
+# composer
+export PATH="$PATH:$HOME/.composer/vendor/bin"
 ```
 
 7. Go into your Terminal Preferences and go to the Profiles tab. Select your default profile and click on the Shell tab. Check "Run command" and type `zsh`. Also, you can add `zsh` to "Ask before closing".
