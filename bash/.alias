@@ -105,6 +105,10 @@ notify() {
 # NPM
 alias npmi="npm install"
 alias npmu="npm update"
+alias dev="npm run dev"
+alias list="npm run list"
+alias prod="npm run prod"
+alias watch="npm run watch"
 
 
 # WEBSITE SHORTCUTS
@@ -115,7 +119,7 @@ alias npmu="npm update"
 # siter "Version 1.1" 1.1.0 "Launching new feature"
 siter() {
 	sed -i '' "s/\(  \"version\": \"\)[^\"]*\(\"\)/\1$2\2/g" package.json;
-	gulp release;
+	npm run prod;
 	if [ ! -z "$3" ]; then
 		gitr "$1" $2 "$3";
 	else

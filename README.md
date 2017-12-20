@@ -40,6 +40,18 @@ Make it easy to switch from directory to directory
 
 1. Open `.zsh` and look at the comments in that file
 
+# Composer
+### Laravel Valet
+
+Some steps that might help for installing Valet (change php version if nedded):
+
+1. Create a folder to house your sites, like `~/VALET/`
+2. [Follow install instructions](https://laravel.com/docs/valet)
+3. Use `brew services start php71` to make sure PHP starts up when you restart your computer
+
+
+
+
 ### Sources
 * [James' Github](https://github.com/jamestomasino/dotfiles/tree/master/bash)
 * [Aiden's Github](https://github.com/aidens)
