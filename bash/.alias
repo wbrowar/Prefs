@@ -118,7 +118,6 @@ alias watch="npm run watch"
 # example:
 # siter "Version 1.1" 1.1.0 "Launching new feature"
 siter() {
-	sed -i '' "s/\(  \"version\": \"\)[^\"]*\(\"\)/\1$2\2/g" package.json;
 	npm run prod;
 	if [ ! -z "$3" ]; then
 		gitr "$1" $2 "$3";
