@@ -26,8 +26,8 @@ compcraft() {
 # CRAFT SCRIPTS
 # requires a .env.sh file in a scripts directory and the file needs to be configured to work with Craft Scripts
 # run this from your project root
-alias cssd="./scripts/backup_assets.sh && ./scripts/backup_db.sh && ./scripts/pull_assets.sh && ./scripts/pull_db.sh && ./scripts/clear_caches.sh"
-alias cssdb="./scripts/backup_db.sh && ./scripts/pull_db.sh && ./scripts/clear_caches.sh"
+alias cssd="./vendor/nystudio107/craft-scripts/scripts/backup_assets.sh && ./vendor/nystudio107/craft-scripts/scripts/backup_db.sh && ./vendor/nystudio107/craft-scripts/scripts/pull_assets.sh && ./vendor/nystudio107/craft-scripts/scripts/pull_db.sh && ./vendor/nystudio107/craft-scripts/scripts/clear_caches.sh"
+alias cssdb="./vendor/nystudio107/craft-scripts/scripts/backup_db.sh && ./vendor/nystudio107/craft-scripts/scripts/pull_db.sh && ./vendor/nystudio107/craft-scripts/scripts/clear_caches.sh"
 
 # GIT
 alias gita="git add -A"
