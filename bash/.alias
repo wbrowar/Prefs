@@ -23,12 +23,6 @@ compcraft() {
   composer create-project craftcms/craft "$1" -s beta
 }
 
-# CRAFT SCRIPTS
-# requires a .env.sh file in a scripts directory and the file needs to be configured to work with Craft Scripts
-# run this from your project root
-alias cssd="./vendor/nystudio107/craft-scripts/scripts/backup_assets.sh && ./vendor/nystudio107/craft-scripts/scripts/backup_db.sh && ./vendor/nystudio107/craft-scripts/scripts/pull_assets.sh && ./vendor/nystudio107/craft-scripts/scripts/pull_db.sh && ./vendor/nystudio107/craft-scripts/scripts/clear_caches.sh"
-alias cssdb="./vendor/nystudio107/craft-scripts/scripts/backup_db.sh && ./vendor/nystudio107/craft-scripts/scripts/pull_db.sh && ./vendor/nystudio107/craft-scripts/scripts/clear_caches.sh"
-
 # GIT
 alias gita="git add -A"
 alias gits="git status && git tag & git branch"
@@ -104,10 +98,12 @@ notify() {
 
 # NPM
 alias npmi="npm install"
-alias npmu="npm update"
+alias cssd="npm run cssd"
+alias cssdb="npm run cssdb"
 alias dev="npm run dev"
 alias list="npm run list"
 alias prod="npm run prod"
+alias update="npm run update"
 alias watch="npm run watch"
 
 
