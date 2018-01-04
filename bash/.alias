@@ -1,4 +1,4 @@
-# BASIC SHELL ALIASES
+!# BASIC SHELL ALIASES
 alias ali='cat ~/.alias'
 alias lsd='ls -Gl | grep "^d"'
 alias lsort='echo "========== Newest ==========" && ls -At1 && echo "========== Oldest =========="'
@@ -25,7 +25,7 @@ compcraft() {
 
 # GIT
 alias gita="git add -A"
-alias gits="git status && git tag & git branch"
+alias gits="git status && git branch"
 alias gitrm="git rm --cached -r . -f"
 alias gitir="git rm --cached -r . && git add ."
 
@@ -97,12 +97,13 @@ notify() {
 
 
 # NPM
-alias npmi="npm install"
 alias cssd="npm run cssd"
 alias cssdb="npm run cssdb"
 alias dev="npm run dev"
 alias list="npm run list"
 alias prod="npm run prod"
+alias setup="npm run setup"
+alias start="npm run start"
 alias update="npm run update"
 alias watch="npm run watch"
 
