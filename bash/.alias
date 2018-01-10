@@ -1,4 +1,4 @@
-!# BASIC SHELL ALIASES
+# BASIC SHELL ALIASES
 alias ali='cat ~/.alias'
 alias lsd='ls -Gl | grep "^d"'
 alias lsort='echo "========== Newest ==========" && ls -At1 && echo "========== Oldest =========="'
