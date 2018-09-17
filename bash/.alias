@@ -42,6 +42,13 @@ gitu() {
 	git add -A && git commit -m "$1" && git push && git status;
 }
 
+# GIT UP DEV – Commits both dev and master branches and checks out dev
+# syntax:
+# gitud "[commit message]"
+gitud() {
+	gitu "$1" && git checkout master && git merge dev && git push && git checkout dev
+}
+
 # GIT CHECKOUT – Checkout git branch
 # syntax:
 # gitch [branch]
@@ -97,15 +104,17 @@ notify() {
 
 
 # NPM
+alias comp="npm run component"
 alias cssd="npm run cssd"
 alias cssdb="npm run cssdb"
 alias dev="npm run dev"
-alias list="npm run list"
 alias prod="npm run prod"
-alias setup="npm run setup"
+alias pub="npm run pub"
+alias pubd="npm run pubd"
 alias start="npm run start"
 alias update="npm run update"
 alias watch="npm run watch"
+alias list="npm run list"
 
 
 # WEBSITE SHORTCUTS
