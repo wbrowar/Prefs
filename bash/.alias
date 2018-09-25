@@ -15,17 +15,9 @@ alias ......="cd ../../../../.."
 alias safari="open -a Safari http://dixonschwabl.com/"
 alias chrome="open -a Google\ Chrome http://dixonschwabl.com/"
 
-
-# COMPOSER
-alias compu="composer update --ignore-platform-reqs"
-alias compw="rm -r vendor && rm composer.lock && composer clear-cache && composer install --ignore-platform-reqs"
-compcraft() {
-  composer create-project craftcms/craft "$1" -s beta
-}
-
 # GIT
 alias gita="git add -A"
-alias gits="git status && git branch"
+alias gits="git status"
 alias gitrm="git rm --cached -r . -f"
 alias gitir="git rm --cached -r . && git add ."
 
@@ -40,13 +32,6 @@ gitd() {
 gitu() {
 	gitd;
 	git add -A && git commit -m "$1" && git push && git status;
-}
-
-# GIT UP DEV – Commits both dev and master branches and checks out dev
-# syntax:
-# gitud "[commit message]"
-gitud() {
-	gitu "$1" && git checkout master && git merge dev && git push && git checkout dev
 }
 
 # GIT CHECKOUT – Checkout git branch
@@ -70,23 +55,6 @@ gitr() {
 	fi
 	git push --follow-tags;
 }
-
-
-# GRUNT
-alias grn="grunt"
-alias grnw="grunt watch"
-alias grnr="grunt release"
-alias grnf="grunt --force"
-alias grnch="grunt && grunt htmlprocess"
-alias grnfirst="npm install && bower install && grunt first"
-
-
-# GULP
-alias gl="gulp run"
-alias glf="yarn && gulp first"
-alias glr="gulp release"
-alias glv="gulp vars"
-alias glw="gulp watch"
 
 
 # MAC SPECIFIC
@@ -114,7 +82,10 @@ alias pubd="npm run pubd"
 alias start="npm run start"
 alias update="npm run update"
 alias watch="npm run watch"
+
+
 alias list="npm run list"
+alias setup="npm run setup"
 
 
 # WEBSITE SHORTCUTS
