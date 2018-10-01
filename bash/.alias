@@ -34,11 +34,11 @@ gitu() {
 	git add -A && git commit -m "$1" && git push && git status;
 }
 
-# GIT CHECKOUT – Checkout git branch
+# GIT UP DEV – Commits both dev and master branches and checks out dev
 # syntax:
-# gitch [branch]
-gitch() {
-	git checkout $1;
+# gitud "[commit message]"
+gitud() {
+	gitu "$1" && git checkout master && git merge dev && git push && git checkout dev
 }
 
 # GIT RELEASE – Pull, tag (with version and message), then commit and push to current branch
