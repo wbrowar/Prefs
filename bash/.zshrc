@@ -106,3 +106,5 @@ export NVM_DIR="${XDG_CONFIG_HOME/:-$HOME/.}nvm"
 
 # composer
 export PATH="$PATH:$HOME/.composer/vendor/bin"
+alias composer="php ~/.composer/composer.phar"
+export PATH="/usr/local/sbin:$PATH"
