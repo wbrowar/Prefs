@@ -15,6 +15,24 @@ alias ......="cd ../../../../.."
 alias safari="open -a Safari http://dixonschwabl.com/"
 alias chrome="open -a Google\ Chrome http://dixonschwabl.com/"
 
+
+# COMPOSER
+# PHP V – switch composer PHP version
+phpv() {
+    valet stop
+    brew unlink php@7.0 php@7.1 php@7.2
+    brew link --force --overwrite $1
+    brew services start $1
+    composer global update
+    valet install
+}
+
+alias php70="phpv php@7.0"
+alias php71="phpv php@7.1"
+alias php72="phpv php@7.2"
+alias php73="phpv php@7.3"
+
+
 # GIT
 alias gita="git add -A"
 alias gits="git status"
@@ -82,10 +100,16 @@ alias pubd="npm run pubd"
 alias start="npm run start"
 alias update="npm run update"
 alias watch="npm run watch"
-
-
 alias list="npm run list"
 alias setup="npm run setup"
+
+dep() {
+	if [ ! -z "$1" ]; then
+		npm run deploy -- --commitmessage="$1";
+	else
+		npm run deploy;
+	fi
+}
 
 
 # WEBSITE SHORTCUTS

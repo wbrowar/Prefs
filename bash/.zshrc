@@ -100,5 +100,9 @@ if [ -f "$HOME/.alias" ] ; then
     . "$HOME/.alias"
 fi
 
+# This loads nvm (nvm lets you switch between versions of node)
+export NVM_DIR="${XDG_CONFIG_HOME/:-$HOME/.}nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
 # composer
 export PATH="$PATH:$HOME/.composer/vendor/bin"
