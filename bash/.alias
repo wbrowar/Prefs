@@ -105,7 +105,7 @@ alias setup="npm run setup"
 
 dep() {
 	if [ ! -z "$1" ]; then
-		npm run deploy -- --commitmessage="$1";
+		npm run deploy -- -- --commitmessage="$1";
 	else
 		npm run deploy;
 	fi
