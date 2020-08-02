@@ -89,25 +89,27 @@ notify() {
 }
 
 
+# Composer
+alias cssd="composer cssd"
+alias cssdb="composer cssdb"
+alias cssdb="composer sync"
+
+
 # NPM
-alias comp="npm run component"
-alias cssd="npm run cssd"
-alias cssdb="npm run cssdb"
-alias dev="npm run dev"
-alias prod="npm run prod"
-alias pub="npm run pub"
-alias pubd="npm run pubd"
-alias start="npm run start"
-alias update="npm run update"
-alias watch="npm run watch"
-alias list="npm run list"
-alias setup="npm run setup"
+alias comp="npm run cnvm && npm run component"
+alias dev="npm run cnvm && npm run dev"
+alias prod="npm run cnvm && npm run prod"
+alias pub="npm run cnvm && npm run pub"
+alias start="npm run cnvm && npm run start"
+alias update="npm run cnvm && npm run update"
+alias watch="npm run cnvm && npm run watch"
+alias setup="npm run cnvm && npm run setup"
 
 dep() {
 	if [ ! -z "$1" ]; then
-		npm run deploy -- -- --commitmessage="$1";
+		npm run cnvm && npm run deploy -- -- --commitmessage="$1";
 	else
-		npm run deploy;
+		npm run cnvm && npm run deploy;
 	fi
 }
 
