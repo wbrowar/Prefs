@@ -96,20 +96,29 @@ alias cssdb="composer sync"
 
 
 # NPM
-alias comp="npm run cnvm && npm run component"
-alias dev="npm run cnvm && npm run dev"
-alias prod="npm run cnvm && npm run prod"
-alias pub="npm run cnvm && npm run pub"
-alias start="npm run cnvm && npm run start"
-alias update="npm run cnvm && npm run update"
-alias watch="npm run cnvm && npm run watch"
-alias setup="npm run cnvm && npm run setup"
+alias comp="cnvm && npm run component"
+alias dev="cnvm && npm run dev"
+alias prod="cnvm && npm run prod"
+alias pub="cnvm && npm run pub"
+alias start="cnvm && npm run start"
+alias update="cnvm && npm run update"
+alias watch="cnvm && npm run watch"
+alias setup="cnvm && npm run setup"
+
+cnvm() {
+  if [[ -f .nvmrc && -r .nvmrc ]]; then
+    nvm use
+  elif [[ $(nvm version) != $(nvm version default)  ]]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
 
 dep() {
 	if [ ! -z "$1" ]; then
-		npm run cnvm && npm run deploy -- -- --commitmessage="$1";
+		cnvm && npm run deploy -- -- --commitmessage="$1";
 	else
-		npm run cnvm && npm run deploy;
+		cnvm && npm run deploy;
 	fi
 }
 
