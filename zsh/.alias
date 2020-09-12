@@ -87,6 +87,7 @@ alias start="cnvm && npm run start"
 alias update="cnvm && npm run update"
 alias watch="cnvm && npm run watch"
 alias setup="cnvm && npm run setup"
+alias test="cnvm && npm run test"
 
 cnvm() {
   if [[ -f .nvmrc && -r .nvmrc ]]; then
