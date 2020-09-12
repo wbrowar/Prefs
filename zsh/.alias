@@ -16,35 +16,18 @@ alias safari="open -a Safari http://dixonschwabl.com/"
 alias chrome="open -a Google\ Chrome http://dixonschwabl.com/"
 
 
-# COMPOSER
-# PHP V – switch composer PHP version
-phpv() {
-    valet stop
-    brew unlink php@7.0 php@7.1 php@7.2
-    brew link --force --overwrite $1
-    brew services start $1
-    composer global update
-    valet install
-}
-
-alias php70="phpv php@7.0"
-alias php71="phpv php@7.1"
-alias php72="phpv php@7.2"
-alias php73="phpv php@7.3"
-
-
 # GIT
 alias gita="git add -A"
 alias gits="git status"
 alias gitrm="git rm --cached -r . -f"
 alias gitir="git rm --cached -r . && git add ."
 
-# GIT DOWN – Pull and check status of repo
+# GIT DOWN – Pull and check status of repo
 gitd() {
 	git pull && gits;
 }
 
-# GIT UP – Commit with a message and push to current branch
+# GIT UP – Commit with a message and push to current branch
 # syntax:
 # gitu "[commit message]"
 gitu() {
@@ -59,7 +42,7 @@ gitud() {
 	gitu "$1" && git checkout master && git merge dev && git push && git checkout dev
 }
 
-# GIT RELEASE – Pull, tag (with version and message), then commit and push to current branch
+# GIT RELEASE – Pull, tag (with version and message), then commit and push to current branch
 # syntax:
 # gitr "[commit message]" [version number] "[version message (optional)]"
 # example:
@@ -124,7 +107,7 @@ dep() {
 
 
 # WEBSITE SHORTCUTS
-# SITE RELEASE – change version number, run grunt release, then commit all changes and tag release
+# SITE RELEASE – change version number, run grunt release, then commit all changes and tag release
 # syntax:
 # siter "[commit message]" [version number] "[version message (optional)]"
 # example:
