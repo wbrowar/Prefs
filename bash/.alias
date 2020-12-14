@@ -11,26 +11,18 @@ alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 
 
-# APPS
-alias safari="open -a Safari http://dixonschwabl.com/"
-alias chrome="open -a Google\ Chrome http://dixonschwabl.com/"
-
-
 # COMPOSER
-# PHP V – switch composer PHP version
-phpv() {
-    valet stop
-    brew unlink php@7.0 php@7.1 php@7.2
-    brew link --force --overwrite $1
-    brew services start $1
-    composer global update
-    valet install
+composerrun() {
+  if [[ -d .ddev  ]]; then
+    ddev exec composer "$1"
+  else
+    composer "$1"
+  fi
 }
 
-alias php70="phpv php@7.0"
-alias php71="phpv php@7.1"
-alias php72="phpv php@7.2"
-alias php73="phpv php@7.3"
+alias cssd="composerrun cssd"
+alias cssdb="composerrun cssdb"
+alias sync="composerrun sync"
 
 
 # GIT
@@ -39,93 +31,22 @@ alias gits="git status"
 alias gitrm="git rm --cached -r . -f"
 alias gitir="git rm --cached -r . && git add ."
 
-# GIT DOWN – Pull and check status of repo
-gitd() {
-	git pull && gits;
-}
-
-# GIT UP – Commit with a message and push to current branch
-# syntax:
-# gitu "[commit message]"
-gitu() {
-	gitd;
-	git add -A && git commit -m "$1" && git push && git status;
-}
-
-# GIT UP DEV – Commits both dev and master branches and checks out dev
-# syntax:
-# gitud "[commit message]"
-gitud() {
-	gitu "$1" && git checkout master && git merge dev && git push && git checkout dev
-}
-
-# GIT RELEASE – Pull, tag (with version and message), then commit and push to current branch
-# syntax:
-# gitr "[commit message]" [version number] "[version message (optional)]"
-# example:
-# gitr "Version 1.1" 1.1.0 "Launching new feature"
-gitr() {
-	gitu "$1";
-	if [ ! -z "$3" ]; then
-		git tag -a $2 -m "$3";
-	else
-		git tag -a $2 -m "$1";
-	fi
-	git push --follow-tags;
-}
-
-
-# MAC SPECIFIC
-alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
-alias showdotfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
-alias hidedotfiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
-alias showdeskicons="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
-alias hidedeskicons="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
-alias lock='/System/Library/CoreServices/"Menu Extras"/User.menu/Contents/Resources/CGSession -suspend'
-alias ss='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine'
-
-notify() {
-	osascript -e "display notification \"$2\" with title \"$1\"";
-}
-
-
-# Composer
-alias cssd="composer cssd"
-alias cssdb="composer cssdb"
-alias cssdb="composer sync"
-
 
 # NPM
-alias comp="npm run cnvm && npm run component"
-alias dev="npm run cnvm && npm run dev"
-alias prod="npm run cnvm && npm run prod"
-alias pub="npm run cnvm && npm run pub"
-alias start="npm run cnvm && npm run start"
-alias update="npm run cnvm && npm run update"
-alias watch="npm run cnvm && npm run watch"
-alias setup="npm run cnvm && npm run setup"
-
-dep() {
-	if [ ! -z "$1" ]; then
-		npm run cnvm && npm run deploy -- -- --commitmessage="$1";
-	else
-		npm run cnvm && npm run deploy;
-	fi
+npmrun() {
+  if [[ -d .ddev  ]]; then
+    ddev exec npm run "$1"
+  elif [[ -f .nvmrc && -r .nvmrc ]]; then
+    nvm use && npm run "$1"
+  fi
 }
 
-
-# WEBSITE SHORTCUTS
-# SITE RELEASE – change version number, run grunt release, then commit all changes and tag release
-# syntax:
-# siter "[commit message]" [version number] "[version message (optional)]"
-# example:
-# siter "Version 1.1" 1.1.0 "Launching new feature"
-siter() {
-	npm run prod;
-	if [ ! -z "$3" ]; then
-		gitr "$1" $2 "$3";
-	else
-		gitr "$1" $2 "$1";
-	fi
-	notify "SITE RELEASE" "Version $2 released!"
-}
+alias comp="npmrun component"
+alias dev="npmrun dev"
+alias prod="npmrun prod"
+alias pub="npmrun pub"
+alias start="npmrun start"
+alias update="npmrun update"
+alias watch="npmrun watch"
+alias setup="npmrun setup"
+alias test="npmrun test"
