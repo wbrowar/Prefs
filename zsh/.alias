@@ -14,7 +14,7 @@ alias ......="cd ../../../../.."
 # COMPOSER
 composerrun() {
   if [[ -d .ddev  ]]; then
-    ddev exec composer "$1"
+    ddev composer "$1"
   else
     composer "$1"
   fi
@@ -35,7 +35,7 @@ alias gitir="git rm --cached -r . && git add ."
 # NPM
 npmrun() {
   if [[ -d .ddev  ]]; then
-    ddev exec npm run "$1"
+    ddev npm run "$1"
   elif [[ -f .nvmrc && -r .nvmrc ]]; then
     nvm use && npm run "$1"
   fi
