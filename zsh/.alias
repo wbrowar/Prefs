@@ -34,8 +34,10 @@ alias gitir="git rm --cached -r . && git add ."
 
 # NPM
 npmrun() {
-  if [[ -d .ddev/commands/web/npm  ]]; then
+  if [[ -f .ddev/commands/web/npm  ]]; then
     ddev npm run "$1"
+  if [[ -d .ddev  ]]; then
+    ddev exec npm run "$1"
   elif [[ -f .nvmrc && -r .nvmrc ]]; then
     nvm use && npm run "$1"
   else
