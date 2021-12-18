@@ -45,12 +45,38 @@ npmrun() {
   fi
 }
 
+alias build="npmrun build"
 alias comp="npmrun component"
 alias dev="npmrun dev"
 alias prod="npmrun prod"
-alias pub="npmrun pub"
+alias new="npmrun new"
+alias setup="npmrun setup"
 alias start="npmrun start"
+alias test="npmrun test"
 alias update="npmrun update"
 alias watch="npmrun watch"
-alias setup="npmrun setup"
-alias test="npmrun test"
+
+
+# NPM
+yarnrun() {
+  if [[ -f .ddev/commands/web/npm  ]]; then
+    ddev yarn "$1"
+  elif [[ -d .ddev  ]]; then
+    ddev exec yarn "$1"
+  elif [[ -f .nvmrc && -r .nvmrc ]]; then
+    nvm use && yarn "$1"
+  else
+    yarn "$1"
+  fi
+}
+
+alias ybuild="yarnrun build"
+alias ycomp="yarnrun component"
+alias ydev="yarnrun dev"
+alias yprod="yarnrun prod"
+alias ynew="yarnrun new"
+alias ysetup="yarnrun setup"
+alias ystart="yarnrun start"
+alias ytest="yarnrun test"
+alias yupdate="yarnrun update"
+alias ywatch="yarnrun watch"
