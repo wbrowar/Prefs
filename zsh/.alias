@@ -31,10 +31,30 @@ alias gits="git status"
 alias gitrm="git rm --cached -r . -f"
 alias gitir="git rm --cached -r . && git add ."
 
+# PACKAGE SCRIPTS
+alias build="packagerun build"
+alias comp="packagerun component"
+alias dev="packagerun dev"
+alias prod="packagerun prod"
+alias new="packagerun new $1"
+alias setup="packagerun setup"
+alias start="packagerun start"
+alias test="packagerun test"
+alias update="packagerun update"
+alias watch="packagerun watch"
+
+packagerun() {
+  if [[ -f yarn.lock  ]]; then
+    yarnrun "$1"
+  else
+    npmrun "$1"
+  fi
+}
+
 
 # NPM
 npmrun() {
-  if [[ -f .ddev/commands/web/npm  ]]; then
+  if [[ -f .ddev/commands/web/npm ]]; then
     ddev npm run "$1"
   elif [[ -d .ddev  ]]; then
     ddev exec npm run "$1"
@@ -45,19 +65,19 @@ npmrun() {
   fi
 }
 
-alias build="npmrun build"
-alias comp="npmrun component"
-alias dev="npmrun dev"
-alias prod="npmrun prod"
-alias new="npmrun new"
-alias setup="npmrun setup"
-alias start="npmrun start"
-alias test="npmrun test"
-alias update="npmrun update"
-alias watch="npmrun watch"
+alias nbuild="npmrun build"
+alias ncomp="npmrun component"
+alias ndev="npmrun dev"
+alias nprod="npmrun prod"
+alias nnew="npmrun new"
+alias nsetup="npmrun setup"
+alias nstart="npmrun start"
+alias ntest="npmrun test"
+alias nupdate="npmrun update"
+alias nwatch="npmrun watch"
 
 
-# NPM
+# YARN
 yarnrun() {
   if [[ -f .ddev/commands/web/npm  ]]; then
     ddev yarn "$1"
