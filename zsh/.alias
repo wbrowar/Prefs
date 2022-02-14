@@ -31,72 +31,54 @@ alias gits="git status"
 alias gitrm="git rm --cached -r . -f"
 alias gitir="git rm --cached -r . && git add ."
 
+
 # PACKAGE SCRIPTS
 alias build="packagerun build"
 alias comp="packagerun component"
 alias dev="packagerun dev"
+alias e2e="packagerun test:e2e"
 alias prod="packagerun prod"
-alias new="packagerun new $1"
+alias new="packagerun new"
 alias setup="packagerun setup"
 alias start="packagerun start"
 alias test="packagerun test"
+alias unit="packagerun test:unit"
 alias update="packagerun update"
 alias watch="packagerun watch"
 
 packagerun() {
-  if [[ -f yarn.lock  ]]; then
-    yarnrun "$1"
+  # Set node version command
+  if [[ -f .ddev/commands/web/npm  ]]; then
+    local N_COMMAND="nvm use"
   else
-    npmrun "$1"
+    local N_COMMAND="n auto"
+  fi
+
+  # Set package runner
+  if [[ -f yarn.lock  ]]; then
+    local SCRIPT_RUNNER="yarn"
+  else
+    local SCRIPT_RUNNER="npm run"
+  fi
+
+  # Run command based on context
+  if [[ -f .ddev/commands/web/npm ]]; then
+    ddev $SCRIPT_RUNNER $1 $2
+  elif [[ -d .ddev  ]]; then
+    ddev exec $SCRIPT_RUNNER $1 $2
+  elif [[ -f .nvmrc && -r .nvmrc ]]; then
+    nvm use && $SCRIPT_RUNNER $1 $2
+  else
+    $SCRIPT_RUNNER $1 $2
   fi
 }
 
 
 # NPM
-npmrun() {
-  if [[ -f .ddev/commands/web/npm ]]; then
-    ddev npm run "$1"
-  elif [[ -d .ddev  ]]; then
-    ddev exec npm run "$1"
-  elif [[ -f .nvmrc && -r .nvmrc ]]; then
-    nvm use && npm run "$1"
-  else
-    npm run "$1"
-  fi
-}
-
-alias nbuild="npmrun build"
-alias ncomp="npmrun component"
-alias ndev="npmrun dev"
-alias nprod="npmrun prod"
-alias nnew="npmrun new"
-alias nsetup="npmrun setup"
-alias nstart="npmrun start"
-alias ntest="npmrun test"
-alias nupdate="npmrun update"
-alias nwatch="npmrun watch"
+# Run `npm install`
+alias ni="packagerun install"
 
 
 # YARN
-yarnrun() {
-  if [[ -f .ddev/commands/web/npm  ]]; then
-    ddev yarn "$1"
-  elif [[ -d .ddev  ]]; then
-    ddev exec yarn "$1"
-  elif [[ -f .nvmrc && -r .nvmrc ]]; then
-    nvm use && yarn "$1"
-  else
-    yarn "$1"
-  fi
-}
-
-alias ybuild="yarnrun build"
-alias ycomp="yarnrun component"
-alias ydev="yarnrun dev"
-alias yprod="yarnrun prod"
-alias ynew="yarnrun new"
-alias ysetup="yarnrun setup"
-alias ystart="yarnrun start"
-alias ytest="yarnrun test"
-alias yupdate="yarnrun update"
-alias ywatch="yarnrun watch"
+# Run `yarn` install command
+alias yi="packagerun"
