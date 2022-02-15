@@ -48,7 +48,7 @@ alias watch="packagerun watch"
 
 packagerun() {
   # Set node version command
-  if [[ -f .ddev/commands/web/npm  ]]; then
+  if [[ -f ~/.nvm/nvm.sh  ]]; then
     local N_COMMAND="nvm use"
   else
     local N_COMMAND="n auto"
