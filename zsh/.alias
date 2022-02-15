@@ -46,30 +46,32 @@ alias unit="packagerun test:unit"
 alias update="packagerun update"
 alias watch="packagerun watch"
 
+# NOTE: using "${SCRIPT_RUNNER[@]}" stores command and arguments into an array
+# and evaluates each item in the array in order (just like when you set the command)
 packagerun() {
   # Set node version command
-  if [[ -f ~/.nvm/nvm.sh  ]]; then
-    local N_COMMAND="nvm use"
+  if [[ -f $HOME/.nvm/nvm.sh  ]]; then
+    local NODE_MANAGER_COMMAND=(nvm use)
   else
-    local N_COMMAND="n auto"
+    local NODE_MANAGER_COMMAND=(n auto)
   fi
 
   # Set package runner
   if [[ -f yarn.lock  ]]; then
-    local SCRIPT_RUNNER="yarn"
+    local SCRIPT_RUNNER=(yarn)
   else
-    local SCRIPT_RUNNER="npm run"
+    local SCRIPT_RUNNER=(npm run)
   fi
 
   # Run command based on context
   if [[ -f .ddev/commands/web/npm ]]; then
-    ddev $SCRIPT_RUNNER $1 $2
+    ddev "${SCRIPT_RUNNER[@]}" $1 $2
   elif [[ -d .ddev  ]]; then
-    ddev exec $SCRIPT_RUNNER $1 $2
+    ddev exec "${SCRIPT_RUNNER[@]}" $1 $2
   elif [[ -f .nvmrc && -r .nvmrc ]]; then
-    nvm use && $SCRIPT_RUNNER $1 $2
+    "${NODE_MANAGER_COMMAND[@]}" && "${SCRIPT_RUNNER[@]}" $1 $2
   else
-    $SCRIPT_RUNNER $1 $2
+    "${SCRIPT_RUNNER[@]}" $1 $2
   fi
 }
 
