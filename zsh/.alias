@@ -79,8 +79,14 @@ packagerun() {
 # NPM
 # Run `npm install`
 alias ni="packagerun install"
+nr() {
+  packagerun $1 $2 $3 $4
+}
 
 
 # YARN
 # Run `yarn` install command
 alias yi="packagerun"
+yr() {
+  packagerun $1 $2 $3 $4
+}
