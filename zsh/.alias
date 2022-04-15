@@ -78,7 +78,7 @@ packagerun() {
 
 # NPM
 # Run `npm install`
-alias ni="packagerun install"
+alias ni="packagerun -v && npm install"
 nr() {
   packagerun $1 $2 $3 $4
 }
@@ -90,3 +90,9 @@ alias yi="packagerun"
 yr() {
   packagerun $1 $2 $3 $4
 }
+
+
+# Load local aliases
+if [ -f "$HOME/.alias.local" ] ; then
+    source "$HOME/.alias.local"
+fi
