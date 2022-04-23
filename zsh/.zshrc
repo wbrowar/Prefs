@@ -135,10 +135,10 @@ if [ -f "$HOME/.alias" ] ; then
 fi
 
 
-# composer
-export PATH="$PATH:$HOME/.composer/vendor/bin"
-alias composer="php ~/.composer/composer.phar"
-export PATH="/usr/local/sbin:$PATH"
+# Homebrew
+if [ -d "/opt/homebrew/bin/brew" ] ; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
