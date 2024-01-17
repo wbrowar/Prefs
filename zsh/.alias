@@ -36,6 +36,7 @@ alias gitir="git rm --cached -r . && git add ."
 alias build="packagerun build"
 alias comp="packagerun component"
 alias dev="packagerun dev"
+alias deploy="packagerun deploy"
 alias e2e="packagerun test:e2e"
 alias new="packagerun new"
 alias prod="packagerun prod"
@@ -80,6 +81,7 @@ packagerun() {
 # NPM
 # Run `npm install`
 alias ni="packagerun -v && npm install"
+alias nnuke="rm -rf node_modules && rm package-lock.json"
 nr() {
   packagerun $1 $2 $3 $4
 }
