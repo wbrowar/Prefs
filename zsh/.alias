@@ -81,7 +81,8 @@ packagerun() {
 # NPM
 # Run `npm install`
 alias ni="packagerun -v && npm install"
-alias nnuke="rm -rf node_modules && rm package-lock.json"
+alias nci="packagerun -v && npm ci"
+alias nnuke="rm -rf node_modules && rm -f package-lock.json"
 nr() {
   packagerun $1 $2 $3 $4
 }
