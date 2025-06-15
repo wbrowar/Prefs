@@ -34,7 +34,7 @@ alias gitir="git rm --cached -r . && git add ."
 
 # PACKAGE SCRIPTS
 alias build="packagerun build"
-alias comp="packagerun component"
+alias coverage="packagerun coverage"
 alias dev="packagerun dev"
 alias deploy="packagerun deploy"
 alias e2e="packagerun test:e2e"
